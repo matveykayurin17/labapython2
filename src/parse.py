@@ -1,18 +1,20 @@
-import logging
+
 import os
 
 from src.functions import cat,cd,mv,ls,cp
+import logging
 from src.config import LOGGING_CONFIG
 logging.config.dictConfig(LOGGING_CONFIG)
-logger=logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
+
 
 
 
 def parse(cin: str) -> list[list[str]]:
-    """Подаётся строка введённая пользователем
-    возвращает список, состоящий из двух списков. Один для хранения команд и путей/файлов и каталогов,
+    """В функцию подаётся строка введённая пользователем
+    Функция возвращает список, состоящий из двух списков. Один для хранения команд и путей/файлов/каталогов,
     другой для хранения флагов"""
-    args = [[], []]
+    args:list[list[str]] = [[], []]
     token = ''
     for i in range(len(cin)):
         if len(token)==0:
@@ -48,8 +50,8 @@ def parse(cin: str) -> list[list[str]]:
     for k in range(len(args[1])):
         flag=list(set(list(args[1][k])))
         str_flag='-'
-        for i in flag:
-            str_flag+=i if i!='-' else''
+        for p in flag:
+            str_flag+=p if p!='-' else''
         args[1][k]=str_flag
     args[1] = list(set(args[1]))
     return args
@@ -58,7 +60,7 @@ def parse(cin: str) -> list[list[str]]:
 
 def parse_1(cin:str)->None:
     """На вход подаётся строка, введённая пользователем
-    Функция определяет какая команда была выполнена и вызывает функцию самой команды"""
+    Функция вызывает предыдущий парсес, определяет какая команда была выполнена и вызывает функцию самой команды"""
     try:
         args = parse(cin)
         if len(args[0])==2 and args[0][0]=='cat' and len(args[1])==0:
@@ -91,13 +93,3 @@ def parse_1(cin:str)->None:
     except Exception as e:
         print('Непредвиденная ошибка')
         logger.error(f"Ошибка : {e}")
-
-
-
-
-
-
-
-
-
-
