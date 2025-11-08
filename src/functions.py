@@ -27,7 +27,7 @@ def cat(now:str,sp:list[list[str]])->str:
         else:
             return "Неккоректно указан путь к файлу"
     except OSError as e:
-        logging.error(f"Ошибка: {e}")
+        logger.error(f"Ошибка: {e}")
         return 'Ошибка операционной системы'
 
 
@@ -46,13 +46,13 @@ def mv(now:str,sp:list[list[str]])->str:
         else:
             return "Неккоректно введён путь"
     except FileNotFoundError as e:
-        logging.error(f"Ошибка: {e}")
+        logger.error(f"Ошибка: {e}")
         return 'И где вы это нашли?'
     except PermissionError as e:
-        logging.error(f"Ошибка: {e}")
+        logger.error(f"Ошибка: {e}")
         return "Любопытной варваре на базаре на оторвали(недостаточно прав)"
     except OSError as e:
-        logging.error(f"Ошибка: {e}")
+        logger.error(f"Ошибка: {e}")
         return 'Ошибка операционной системы'
 
 
@@ -81,7 +81,7 @@ def cd(now:str,sp:list[list[str]])->str:
             else:
                 return "Неверно указан путь"
     except OSError as e:
-        logging.error(f"Ошибка: {e}")
+        logger.error(f"Ошибка: {e}")
         return 'Ошибка операционной системы'
 
 
@@ -132,7 +132,7 @@ def ls(now:str,sp:list[list[str]])->str:
             else:
                 return "Указан неверный путь"
     except OSError as e:
-        logging.error(f"Ошибка: {e}")
+        logger.error(f"Ошибка: {e}")
         return 'Ошибка операционной системы'
 
 def cp(now:str,sp:list[list[str]])->str:
@@ -168,7 +168,7 @@ def cp(now:str,sp:list[list[str]])->str:
         else:
             return "Неверно введён флаг"
     except OSError as e:
-        logging.error(f"Ошибка: {e}")
+        logger.error(f"Ошибка: {e}")
         return 'Ошибка операционной системы'
 
 
