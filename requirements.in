@@ -1,0 +1,6 @@
+colorama
+iniconfig
+packaging
+pluggy
+pygments
+pytest

@@ -7,7 +7,19 @@ from src.config import LOGGING_CONFIG
 logging.config.dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger(__name__)
 
-
+for handler in logger.handlers:
+    if isinstance(handler, logging.StreamHandler):
+        try:
+            handler.stream.reconfigure(encoding='utf-8', errors='replace')
+        except AttributeError:
+            class StreamWrapper:
+                def __init__(self, stream):
+                    self.stream = stream
+                def write(self, s):
+                    self.stream.write(s.encode('utf-8', errors='replace').decode('utf-8'))
+                def flush(self):
+                    self.stream.flush()
+            handler.stream = StreamWrapper(handler.stream)
 
 
 def parse(cin: str) -> list[list[str]]:

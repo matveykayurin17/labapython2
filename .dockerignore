@@ -1,26 +1,25 @@
+# Игнорируем кэш Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-
+# Логи
 *.log
 shell.log
 
-
+# Виртуальное окружение
 venv/
 .env/
 
-
+# Git и IDE
 .git/
 .gitignore
-
-
 .idea/
 .vscode/
 
-
+# Тесты (если не нужны в контейнере)
 tests/
 
-
+# Lock-файлы других менеджеров, которые не используем
 uv.lock

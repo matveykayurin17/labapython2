@@ -393,3 +393,5 @@ cython_debug/
 # Editor-based Rest Client
 
 # Android studio 3.12213412+ serialized cache file
+
+uv.lock
