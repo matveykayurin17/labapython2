@@ -1,21 +1,20 @@
-# Используем официальный Python образ
 FROM python:3.12-slim
 
-# Не кешируем pyc, ускоряем контейнер
+# Отключаем лишние .pyc-файлы и включаем прямой вывод
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Рабочая директория внутри контейнера
+# Рабочая директория
 WORKDIR /app
 
-# Копируем только файлы зависимостей (ускоряет сборку)
+# Копируем файлы зависимостей
 COPY requirements.txt pyproject.toml uv.lock ./
 
 # Устанавливаем зависимости
 RUN pip install --no-cache-dir -r requirements.txt || true
 
-# Копируем весь проект внутрь контейнера
+# Копируем весь проект
 COPY . .
 
-# Запуск приложения
-CMD ["python", "src/main.py"]
+# Запуск проекта как пакета
+CMD ["python", "-m", "src.main"]
